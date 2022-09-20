@@ -8,14 +8,22 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
-import axios from "axios";
+// import request from "../utils/request";
+import textApi from "../api/text";
 export default {
   name: "HomeView",
+  data() {
+    return {
+      page: 1,
+      size: 20,
+    };
+  },
   components: {
     HelloWorld,
   },
   created() {
-    axios({ url: "http://localhost:3000/", method: "GET" })
+    textApi
+      .Getlist(this.page, this.size)
       .then((res) => {
         console.log(res);
       })
