@@ -7,7 +7,7 @@ module.exports = defineConfig({
     // 主机名
     host: "localhost",
     // 是否自动打开浏览器
-    open: true,
+    open: false,
     // 是否开启https
     https: false,
     // 配置跨域
