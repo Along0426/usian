@@ -61,6 +61,24 @@ export default {
         this.login();
       });
     },
+
+    // 登录方法
+    async login() {
+      // 调用vuex中的登录
+      const token = await this.$store.dispatch("DisSetToken", this.form);
+      // 没有token信息的话停止
+      if (!token) return;
+      // 调用vuex中的用户信息
+      const userInfo = await this.$store.dispatch("DisSetUserInfo");
+      // 如果没有用户信息的话停止
+      if (!userInfo) return;
+      // 消息弹框
+      this.$message.success(`欢迎您，${userInfo.name}`);
+      // 跳转至首页
+      this.$router.push("/");
+    },
+
+    /*
     async login() {
       try {
         // 调用登录接口
@@ -69,14 +87,18 @@ export default {
         this.$store.dispatch("DisSetToken", response.token);
         // 调用用户信息接口
         const userinfo = await userInfo();
+        console.log(userinfo);
         // 将用户信息存储到vuex
         this.$store.dispatch("DisSetUserInfo", userinfo);
         // 跳转到首页
         this.$router.push("/");
+        // 消息提示
+        this.$message.success(`欢迎您，${userinfo.name}`);
       } catch (e) {
         console.log(e.message);
       }
     },
+    */
   },
   //子组件注册
   components: {},

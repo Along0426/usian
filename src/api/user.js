@@ -8,3 +8,10 @@ export const userInfo = () => {
         method: "GET",
     })
 }
+
+export const logout = () => {
+    return request({
+        url: "/admin/logout",
+        method: "POST"
+    })
+}
